@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class OXgame {
 	public static void  main(String[] args) {
-		String[][] field = new String [4][4];
+		String[][] field = new String [3][3];
 		field[0][0] = " ";
 		field[0][1] = " ";
 		field[0][2] = " ";
@@ -27,12 +27,12 @@ public class OXgame {
 		while(true) {
 			input(field);
 			output(field);
-			if(judge(field, "o") == "finish") {
+			if(judge(field, "o") == "finish" || judge(field, "o") ==  "draw") {
 				break;
 			}
 			eneInput(field);
 			output(field);
-			if(judge(field, "x") == "finish") {
+			if(judge(field, "x") == "finish" ||  judge(field, "x") ==  "draw") {
 				break;
 			}
 		}
@@ -40,8 +40,8 @@ public class OXgame {
 	public static void input(String[][] field) {
 		Scanner sc = new Scanner(System.in);
 		while(true) {
-			int x = sc.nextInt();
 			int y = sc.nextInt();
+			int x = sc.nextInt();
 
 			if(( x < 0 ||  2 < x) || (y < 0 ||  2 < y) || (field[y][x] != " ") ) {
 				System.out.println("そこには入力できません。再度入力してください");
@@ -54,8 +54,8 @@ public class OXgame {
 	}
 	public static void eneInput(String[][] field) {
 		while(true) {
-			int x = new java.util.Random().nextInt(3);
 			int y = new java.util.Random().nextInt(3);
+			int x = new java.util.Random().nextInt(3);
 			if(( x < 0 ||  2 < x) || (y < 0 ||  2 < y) || (field[y][x] != " ") ) {
 				;
 			}else {
@@ -83,9 +83,16 @@ public class OXgame {
 			(field[0][0] == obj && field[1][1] == obj && field[2][2] == obj) || (field[0][2] == obj && field[1][1] == obj && field[2][0] == obj)) {
 				System.out.println(obj + "の勝ちだ！");
 				status = "finish";
-		}else {
+		}else if(field[0][0] != " " && field[0][1] != " "  && field[0][2] != " " && field[1][0] != " " && field[1][1] != " " && field[1][2] != " " && field[2][0] != " " && field[2][1] != " " && field[2][2] != " ") {
+			System.out.println("引き分けだ");
+			status = "draw";
+		}
+		else {
 			status = "continue";
 		}
 		return status;
 	}
 }
+
+
+
