@@ -23,13 +23,18 @@ public class OXgame {
 		field[2][2] = " ";
 
 		System.out.println("あなたからスタートです。　０〜２までの数字を入力してください");
+
 		while(true) {
 			input(field);
 			output(field);
-			judge(field, "o");
+			if(judge(field, "o") == "finish") {
+				break;
+			}
 			eneInput(field);
 			output(field);
-			judge(field, "x");
+			if(judge(field, "x") == "finish") {
+				break;
+			}
 		}
 	}
 	public static void input(String[][] field) {
@@ -61,20 +66,26 @@ public class OXgame {
 	}
 
 	public static void output(String[][] field) {
+		System.out.println("------------------------------------");
 		for(int i = 0;i < 3; i++ ) {
 			for(int j = 0; j < 3; j++) {
 				System.out.print(field[i][j]);
 			}
 			System.out.println();
 		}
+		System.out.println("------------------------------------");
 	}
 
-	public static void judge(String[][] field, String obj) {
+	public static String judge(String[][] field, String obj) {
+		String status;
 		if((field[0][0] == obj && field[0][1] == obj && field[0][2] == obj) ||(field[1][0] == obj && field[1][1] == obj && field[1][2] == obj)||(field[2][0] == obj && field[2][1] == obj && field[2][2] == obj) ||
 			(field[0][0] == obj && field[1][0] == obj && field[2][0] == obj) || (field[0][1] == obj && field[1][1] == obj && field[2][1] == obj) || (field[0][2] == obj && field[1][2] == obj && field[2][2] == obj) ||
 			(field[0][0] == obj && field[1][1] == obj && field[2][2] == obj) || (field[0][2] == obj && field[1][1] == obj && field[2][0] == obj)) {
 				System.out.println(obj + "の勝ちだ！");
-//				break;
+				status = "finish";
+		}else {
+			status = "continue";
 		}
+		return status;
 	}
 }
