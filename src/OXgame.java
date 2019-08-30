@@ -12,15 +12,20 @@ import java.util.Scanner;
 public class OXgame {
 	public static void  main(String[] args) {
 		String[][] field = new String [3][3];
-		field[0][0] = " ";
-		field[0][1] = " ";
-		field[0][2] = " ";
-		field[1][0] = " ";
-		field[1][1] = " ";
-		field[1][2] = " ";
-		field[2][0] = " ";
-		field[2][1] = " ";
-		field[2][2] = " ";
+		for(int y = 0; y < 3; y++) {
+			for(int x = 0; x < 3; x++) {
+				field[y][x] = " ";
+			}
+		}
+//		field[0][0] = " ";
+//		field[0][1] = " ";
+//		field[0][2] = " ";
+//		field[1][0] = " ";
+//		field[1][1] = " ";
+//		field[1][2] = " ";
+//		field[2][0] = " ";
+//		field[2][1] = " ";
+//		field[2][2] = " ";
 
 		System.out.println("あなたからスタートです。　０〜２までの数字を入力してください");
 
