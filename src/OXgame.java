@@ -109,15 +109,17 @@ public class OXgame {
 	}
 
 	public static boolean emptyCheck(String [][] field, boolean answer) {
+		int empCount = 0;
 		for(int y = 0;y < 3; y++ ) {
 			for(int x = 0; x < 3; x++) {
-				answer = field[y][x] != " " ;
-				if(answer == true) {break;}
+				if(field[y][x] == " ") {empCount++;}
 			}
+		}
+		if(empCount == 0) {
+			answer = true;
 		}
 		return answer;
 	}
 }
-
 
 
