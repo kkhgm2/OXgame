@@ -54,7 +54,6 @@ public class OXgame {
 			int y = new java.util.Random().nextInt(3);
 			int x = new java.util.Random().nextInt(3);
 			if(( x < 0 ||  2 < x) || (y < 0 ||  2 < y) || (field[y][x] != " ") ) {
-				;
 			}else {
 				field[y][x] = "x";
 				break;
@@ -75,11 +74,12 @@ public class OXgame {
 
 	public static String judge(String[][] field, String obj) {
 		String status;
-		if( horaizontalCheck(field, obj) || varticalCheck(field, obj) ||
+		boolean answer = false;
+		if( check(field, obj, answer) ||
 			(field[0][0] == obj && field[1][1] == obj && field[2][2] == obj) || (field[0][2] == obj && field[1][1] == obj && field[2][0] == obj)) {
 				System.out.println(obj + "の勝ちだ！");
 				status = "finish";
-		}else if(field[0][0] != " " && field[0][1] != " "  && field[0][2] != " " && field[1][0] != " " && field[1][1] != " " && field[1][2] != " " && field[2][0] != " " && field[2][1] != " " && field[2][2] != " ") {
+		}else if(emptyCheck(field, answer)) {
 			System.out.println("引き分けだ");
 			status = "draw";
 		}
@@ -89,26 +89,31 @@ public class OXgame {
 		return status;
 	}
 
-	public static boolean horaizontalCheck(String[][] field, String obj) {
+	public static boolean check(String[][] field, String obj, boolean answer) {
 //		横確認
-		int x = 0;
-		int y = 0;
-		boolean answer = false;
-		for(y = 0; y < 3; y++) {
-			answer = field[y][x] == obj && field[y][x + 1] == obj && field[y][x + 2] == obj;
-			if(answer == true) {break;}
+		if(answer == false) {
+			for(int y = 0; y < 2; y++) {
+				answer = field[y][0] == obj && field[y][1] == obj && field[y][2] == obj;
+				if(answer == true) {break;}
+			}
+		}
+
+//		縦確認
+		if(answer == false) {
+			for(int x = 0; x < 2; x++) {
+				answer = field[0][x] == obj && field[1][x] == obj && field[2][x] == obj;
+				if(answer == true) {break;}
+			}
 		}
 		return answer;
 	}
 
-	public static boolean varticalCheck(String[][] field, String obj) {
-//		縦確認
-		int x = 0;
-		int y = 0;
-		boolean answer = false;
-		for(x = 0; x < 3; x++) {
-			answer = field[y][x] == obj && field[y + 1][x] == obj && field[y + 2][x] == obj;
-			if(answer == true) {break;}
+	public static boolean emptyCheck(String [][] field, boolean answer) {
+		for(int y = 0;y < 3; y++ ) {
+			for(int x = 0; x < 3; x++) {
+				answer = field[y][x] != " " ;
+				if(answer == true) {break;}
+			}
 		}
 		return answer;
 	}
