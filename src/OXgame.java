@@ -24,12 +24,14 @@ public class OXgame {
 		while(true) {
 			input(field);
 			output(field);
-			if(judge(field, "o") == "finish" || judge(field, "o") ==  "draw") {
+			String j1 =  judge(field, "o");
+			if(j1 == "finish" || j1 ==  "draw") {
 				break;
 			}
 			eneInput(field);
 			output(field);
-			if(judge(field, "x") == "finish" ||  judge(field, "x") ==  "draw") {
+			String j2 =  judge(field, "x");
+			if(j2 == "finish" || j2 ==  "draw") {
 				break;
 			}
 		}
