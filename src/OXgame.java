@@ -97,7 +97,7 @@ public class OXgame {
 	public static boolean check(String[][] field, String obj, boolean answer) {
 //		横確認
 		if(answer == false) {
-			for(int y = 0; y < 2; y++) {
+			for(int y = 0; y < 3; y++) {
 				answer = field[y][0] == obj && field[y][1] == obj && field[y][2] == obj;
 				if(answer == true) {break;}
 			}
@@ -105,7 +105,7 @@ public class OXgame {
 
 //		縦確認
 		if(answer == false) {
-			for(int x = 0; x < 2; x++) {
+			for(int x = 0; x < 3; x++) {
 				answer = field[0][x] == obj && field[1][x] == obj && field[2][x] == obj;
 				if(answer == true) {break;}
 			}
