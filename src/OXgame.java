@@ -11,6 +11,7 @@ import java.util.Scanner;
 
 public class OXgame {
 	public static void  main(String[] args) {
+		boolean []turn = {true, false};
 //		OX 枠の確保！
 		String[][] field = new String [3][3];
 		for(int y = 0; y < 3; y++) {
@@ -18,17 +19,16 @@ public class OXgame {
 				field[y][x] = " ";
 			}
 		}
-
 		System.out.println("あなたからスタートです。　０〜２までの数字を入力してください");
 
 		while(true) {
-			input(field);
+			input(field,turn[0]);
 			output(field);
 			String j1 =  judge(field, "o");
 			if(j1 == "finish" || j1 ==  "draw") {
 				break;
 			}
-			eneInput(field);
+			input(field, turn[1]);
 			output(field);
 			String j2 =  judge(field, "x");
 			if(j2 == "finish" || j2 ==  "draw") {
@@ -36,31 +36,28 @@ public class OXgame {
 			}
 		}
 	}
-	public static void input(String[][] field) {
+	public static void input(String[][] field, boolean turn) {
+		int x = 0;
+		int y = 0;
+		String obj = "o";
 		Scanner sc = new Scanner(System.in);
 		while(true) {
-			int y = sc.nextInt();
-			int x = sc.nextInt();
-
+			if (turn == true) {
+				y = sc.nextInt();
+				x = sc.nextInt();
+			}else {
+				y = new java.util.Random().nextInt(3);
+				x = new java.util.Random().nextInt(3);
+				obj = "x";
+			}
 			if(( x < 0 ||  2 < x) || (y < 0 ||  2 < y) || (field[y][x] != " ") ) {
 				System.out.println("そこには入力できません。再度入力してください");
 			}else {
-				field[y][x] = "o";
+				field[y][x] = obj;
 				break;
 			}
 		}
 //		sc.close();
-	}
-	public static void eneInput(String[][] field) {
-		while(true) {
-			int y = new java.util.Random().nextInt(3);
-			int x = new java.util.Random().nextInt(3);
-			if(( x < 0 ||  2 < x) || (y < 0 ||  2 < y) || (field[y][x] != " ") ) {
-			}else {
-				field[y][x] = "x";
-				break;
-			}
-		}
 	}
 
 	public static void output(String[][] field) {
