@@ -11,6 +11,7 @@ import java.util.Scanner;
 
 public class OXgame {
 	public static void  main(String[] args) {
+		int num = new java.util.Random().nextInt(2);
 		boolean []turn = {true, false};
 //		OX 枠の確保！
 		String[][] field = new String [3][3];
@@ -19,16 +20,21 @@ public class OXgame {
 				field[y][x] = " ";
 			}
 		}
-		System.out.println("あなたからスタートです。　０〜２までの数字を入力してください");
+		if(turn[num] == true) {
+			System.out.println("あなたからスタートです。　０〜２までの数字を入力してください");
+		}else {
+			System.out.println("相手からスタートです。　０〜２までの数字を入力してください");
+		}
 
 		while(true) {
-			input(field,turn[0]);
+			input(field,turn[num]);
 			output(field);
 			String j1 =  judge(field, "o");
 			if(j1 == "finish" || j1 ==  "draw") {
 				break;
 			}
-			input(field, turn[1]);
+//			num の残りを出す！ (0 - 1) * -1 = 1,もしくは、 (1 -0) * -1 = 0
+			input(field, turn[(num -1) * -1]);
 			output(field);
 			String j2 =  judge(field, "x");
 			if(j2 == "finish" || j2 ==  "draw") {
